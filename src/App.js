@@ -8,7 +8,9 @@ let adjs = []
 let adjTotal = 0
 
 const App = () => {
-	const [secondsRemaining, setSecondsRemaining] = useState(TWENTY_FIVE_MIN)
+	const [secondsRemaining, setSecondsRemaining] = useState(
+		TWENTY_FIVE_MIN,
+	)
 	const [isPaused, setisPaused] = useState(true)
 	const [isBreak, setIsBreak] = useState(false)
 
@@ -32,7 +34,7 @@ const App = () => {
 			timeAfter = performance.now()
 		}, 1000 - adjustment)
 		return () => clearInterval(interval)
-	}, [secondsRemaining, isPaused])
+	}, [secondsRemaining, isBreak, isPaused])
 
 	const togglePause = () => {
 		setisPaused(!isPaused)
@@ -52,13 +54,20 @@ const App = () => {
 		<div id='container'>
 			<div id='pomodoro-timer'>
 				<div id='seconds-left-display'>
-					{`${isBreak ? '🧘‍♀️' : '🍅'} ${secondsRemaining}`}&nbsp;
+					{`${isBreak ? '🧘‍♀️' : '🍅'} ${secondsRemaining}`}
+					&nbsp;
 				</div>
 				<div>
-					<button onClick={togglePause} id='play-pause-timer-button'>
+					<button
+						onClick={togglePause}
+						id='play-pause-timer-button'
+					>
 						{isPaused ? 'Start' : 'Stop'}
 					</button>
-					<button onClick={toggleBreak} id='reset-timer-button'>
+					<button
+						onClick={toggleBreak}
+						id='reset-timer-button'
+					>
 						{isBreak ? 'Break' : 'Pomodoro'}
 					</button>
 					<audio src='ding.mp3' ref={alarmRef} />
@@ -69,9 +78,3 @@ const App = () => {
 }
 
 export default App
-
-/**
- * timer.startPomodoro()
- * timer.startBreak()
- *
- */
