@@ -11,6 +11,8 @@ const App = () => {
 	const [isPaused, setisPaused] = useState(true)
 	// whether the timer is counting down a pomodoro or break
 	const [isBreak, setIsBreak] = useState(false)
+	// horizontal position of timer
+	const [marginLeft, setMarginLeft] = useState(0)
 
 	// chime audio element to play on timer completion
 	const alarmRef = useRef(null)
@@ -54,7 +56,23 @@ const App = () => {
 		setisPaused(true)
 	}
 
-	const Buttons = () => (
+	const moveLeft = () => {
+		setMarginLeft(marginLeft - 1)
+	}
+
+	const moveRight = () => {
+		setMarginLeft(marginLeft + 1)
+	}
+
+	const emojiAndTimeRemaining = `${isBreak ? '🧘‍♀️' : '🍅'} ${secondsRemaining}`
+	const TimerDisplay = () => (
+		<div id='timer-display'>
+			{emojiAndTimeRemaining}
+			&nbsp;
+		</div>
+	)
+
+	const TimerButtons = () => (
 		<div>
 			<button onClick={togglePause} id='play-pause-timer-button'>
 				{isPaused ? 'Start' : 'Stop'}
@@ -65,20 +83,19 @@ const App = () => {
 		</div>
 	)
 
-	const TimerDisplay = () => (
-		<div id='timer-display'>
-			{emojiAndTimeRemaining}
-			&nbsp;
+	const PositionButtons = () => (
+		<div>
+			<button onClick={moveLeft}>-</button>
+			<button onClick={moveRight}>+</button>
 		</div>
 	)
 
-	const emojiAndTimeRemaining = `${isBreak ? '🧘‍♀️' : '🍅'} ${secondsRemaining}`
-
 	return (
 		<div id='container'>
-			<div id='pomodoro-timer'>
+			<div id='pomodoro-timer' style={{ marginLeft }}>
 				<TimerDisplay />
-				<Buttons />
+				<TimerButtons />
+				<PositionButtons />
 			</div>
 			<audio src='ding.mp3' ref={alarmRef} />
 		</div>
