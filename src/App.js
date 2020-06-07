@@ -54,24 +54,33 @@ const App = () => {
 		setisPaused(true)
 	}
 
+	const Buttons = () => (
+		<div>
+			<button onClick={togglePause} id='play-pause-timer-button'>
+				{isPaused ? 'Start' : 'Stop'}
+			</button>
+			<button onClick={toggleBreak} id='reset-timer-button'>
+				{isBreak ? 'Break' : 'Pomodoro'}
+			</button>
+		</div>
+	)
+
+	const TimerDisplay = () => (
+		<div id='seconds-left-display'>
+			{emojiAndTimeRemaining}
+			&nbsp;
+		</div>
+	)
+
+	const emojiAndTimeRemaining = `${isBreak ? '🧘‍♀️' : '🍅'} ${secondsRemaining}`
+
 	return (
 		<div id='container'>
 			<div id='pomodoro-timer'>
-				<div id='seconds-left-display'>
-					{// TODO pull out}
-					{`${isBreak ? '🧘‍♀️' : '🍅'} ${secondsRemaining}`}
-					&nbsp;
-				</div>
-				<div>
-					<button onClick={togglePause} id='play-pause-timer-button'>
-						{isPaused ? 'Start' : 'Stop'}
-					</button>
-					<button onClick={toggleBreak} id='reset-timer-button'>
-						{isBreak ? 'Break' : 'Pomodoro'}
-					</button>
-					<audio src='ding.mp3' ref={alarmRef} />
-				</div>
+				<TimerDisplay />
+				<Buttons />
 			</div>
+			<audio src='ding.mp3' ref={alarmRef} />
 		</div>
 	)
 }
