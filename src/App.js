@@ -66,7 +66,7 @@ const App = () => {
 	)
 
 	const TimerDisplay = () => (
-		<div id='seconds-left-display'>
+		<div id='timer-display'>
 			{emojiAndTimeRemaining}
 			&nbsp;
 		</div>
