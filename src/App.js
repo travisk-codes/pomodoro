@@ -28,11 +28,11 @@ const App = () => {
 		}
 		// if not paused or completed, decrement one second
 		// TODO change to setTimeout
-		const interval = setInterval(() => {
+		const interval = setTimeout(() => {
 			setSecondsRemaining(secondsRemaining - 1)
 		}, 1000)
 		// remove interval when component will unmount
-		return () => clearInterval(interval)
+		return () => clearTimeout(interval)
 	}, [secondsRemaining, isBreak, isPaused])
 
 	const togglePause = () => {
