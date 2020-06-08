@@ -64,11 +64,10 @@ const App = () => {
 		setMarginLeft(marginLeft + 1)
 	}
 
-	const emojiAndTimeRemaining = `${isBreak ? '🧘‍♀️' : '🍅'} ${secondsRemaining}`
 	const TimerDisplay = () => (
 		<div id='timer-display'>
-			{emojiAndTimeRemaining}
-			&nbsp;
+			<span id='emoji'>{`${isBreak ? '🧘‍♀️' : '🍅'}`}</span>
+			{secondsRemaining}
 		</div>
 	)
 
@@ -92,7 +91,7 @@ const App = () => {
 
 	return (
 		<div id='container'>
-			<div id='pomodoro-timer' style={{ marginLeft }}>
+			<div id='pomodoro-timer'>
 				<TimerDisplay />
 				<TimerButtons />
 				<PositionButtons />

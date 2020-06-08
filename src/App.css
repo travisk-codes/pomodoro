@@ -1,16 +1,16 @@
 #pomodoro-timer {
-	position: relative;
-	margin: 0 auto;
-	width: 280px; /* approx width of elements, use for margin 0 auto */
-	padding-left: 10px; /* compensate for emoji size */
+	display: inline-flex;
+	flex-direction: column;
+	font-size: 70px; /* arbitrary, looks good */
+	width: 320px; /* width of my side windows */
 }
 
-#timer-display {
-	font-size: 70px;
-	margin-top: 8px;
-	margin-bottom: 10px;
+#pomodoro-timer > * {
+	padding-top: 8px; /* arbitrary, looks good */
+	display: flex;
+	justify-content: center;
 }
 
-button {
-	width: 130px; /* approx width of timer-display */
+#emoji {
+	margin-top: -5px; /* position relative to number looks better */
 }
